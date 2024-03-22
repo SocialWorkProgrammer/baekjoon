@@ -10,6 +10,7 @@ card_sum = 0
 from heapq import heappush, heappop
 
 lst = []
+# 유의사항 : sort()를 아래 while문에 넣으면 안 된다!
 arr.sort()
 # start = time.time()
 while arr:
