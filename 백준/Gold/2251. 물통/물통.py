@@ -9,33 +9,31 @@ def pour(x,y):
 def bfs():
     while q:
         x, y = q.popleft()
-        z = c - x - y
+        z = C - x - y
 
         if x == 0:
             answer.append(z)
-
-        water = min(x, b-y)
+        # 총 6가지(해당 물통의 현재 남아있는 물 양과 옮겨질 물 양 비교)
+        water = min(x, B-y)
         pour(x - water, y + water)
-
-        water = min(x, c-z)
+        water = min(x, C-z)
         pour(x - water, y)
-
-        water = min(y, a-x)
+        water = min(y, A-x)
         pour(x + water , y-water)
-
-        water = min(y, c-z)
+        water = min(y, C-z)
         pour(x, y-water)
-        water = min(z, a-x)
+        water = min(z, A-x)
         pour(x + water, y)
-        water = min(z, b-y)
+        water = min(z, B-y)
         pour(x, y+ water)
 
-a, b, c = map(int, sys.stdin.readline().split())
+A, B, C = map(int, sys.stdin.readline().split())
 
 q = deque()
 q.append((0,0))
 
-visited = [[False]*(b+1) for _ in range(a+1)]
+# 2차원 배열로 visited 만들기
+visited = [[False]*(B+1) for _ in range(A+1)]
 visited[0][0] = True
 
 answer = []
