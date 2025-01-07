@@ -1,7 +1,7 @@
 import sys
 
 N = list(map(int, input()))
-cntlst = [0] * 11
+cntlst = [0] * 10
 ans = ''
 
 for i in N:
