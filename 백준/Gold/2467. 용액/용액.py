@@ -6,18 +6,12 @@ final = [lst[s], lst[e]]
 while s < e:
     left, right = lst[s], lst[e]
     mid = left + right
-    if mid == 0:
+    if abs(mid) <= abs(sum(final)):
         final = [left, right]
-        break
-    elif abs(mid) <= abs(sum(final)):
-        final = [left, right]
-        if mid < 0:
-            s += 1
-        elif mid > 0:
-            e -= 1
-    else:
-        if mid < 0:
-            s += 1
-        else:
-            e -= 1
+        if mid == 0:
+            break
+    if mid < 0:
+        s += 1
+    elif mid > 0:
+        e -= 1
 print(*final)
