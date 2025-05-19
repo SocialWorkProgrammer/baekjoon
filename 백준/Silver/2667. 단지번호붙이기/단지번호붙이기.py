@@ -1,30 +1,23 @@
 N = int(input())
-graph = []
-for tc in range(N):
-    graph.append(list(map(int, input())))
+graph = [list(map(int, input())) for i in range(N)]
+visited = [[0] * N for i in range(N)]
+dirx, diry = [1, -1, 0, 0], [0, 0, 1, -1]
 
-dx = [0, 0, -1, 1]
-dy = [-1, 1, 0, 0]
 def housedfs(graph, x, y, visited):
     global cnt
-    if not visited[x][y] and graph[x][y] == 1:
-        visited[x][y] = True
+    if graph[x][y] == 1 and visited[x][y] == 0:
+        visited[x][y] = 1
         cnt += 1
-        for i in range(4):
-            if 0 <= x + dx[i] < N and 0 <= y + dy[i] < N:
-                housedfs(graph, x + dx[i], y + dy[i], visited)
+        for n in range(4):
+            if 0 <= x + dirx[n] < N and 0 <= y + diry[n] < N:
+                housedfs(graph, x + dirx[n], y + diry[n], visited)
     return cnt
 
-visited = [[False] * N for i in range(N)]
-housecnt = 0
-lst = []
-for x in range(N):
-    for y in range(N):
+ans = []
+for i in range(N):
+    for j in range(N):
         cnt = 0
-        if housedfs(graph, x, y, visited) != 0:
-            housecnt += 1
-            lst.append(cnt)
-
-print(housecnt)
-for i in sorted(lst):
-    print(i)
+        if (result := housedfs(graph, i, j, visited)) != 0:
+            ans.append(result)
+print(len(ans))
+print(*sorted(ans), sep = "\n")
