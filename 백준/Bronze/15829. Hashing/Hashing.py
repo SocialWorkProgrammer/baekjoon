@@ -6,4 +6,7 @@ hash = 0
 for num in lst:
     hash += num * (31 ** po)
     po += 1
-print(hash)
+if hash >= 1234567891:
+    print(round(hash%1234567891))
+else:
+    print(hash)
